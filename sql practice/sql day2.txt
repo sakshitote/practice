@@ -1,0 +1,8 @@
+Q1. Find the 2nd highest distinct salary. Return NULL if it doesn’t exist.
+sql
+SELECT (
+    SELECT DISTINCT salary
+    FROM Employee
+    ORDER BY salary DESC
+    LIMIT 1 OFFSET 1
+) AS SecondHighestSalary;

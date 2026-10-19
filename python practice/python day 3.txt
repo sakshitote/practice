@@ -1,0 +1,30 @@
+Zigzag Conversion
+The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+P		A		H		N
+A	P	L	S	I	I	G
+Y		I		R		
+
+And then read line by line: "PAHNAPLSIIGYIR"
+Write the code that will take a string and make this conversion given a number of rows:
+string convert (string s, int numRows);
+ 
+
+
+
+def zigzag(s:str,rowno:int)->str:
+     if rowno==1 or len(s)<=rowno:
+         return s
+
+     rows=[""]*rowno
+     r=0
+     d=1
+     for i in s:
+         rows[r] +=i
+         if r==0:
+             d=1
+         elif r==rowno-1:
+             d=-1
+         r+=d
+     return "".join(rows)
+
+ print(zigzag("abcdefgh",3))

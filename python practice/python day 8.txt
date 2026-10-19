@@ -1,0 +1,33 @@
+Longest Substring Without Repeating Characters
+
+Given a string s, find the length of the longest substring without duplicate characters.
+ 
+Example 1:
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3. Note that "bca" and "cab" are also correct answers.
+
+Example 2:
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+
+
+#include <string.h>
+
+int lengthOfLongestSubstring(char* s) {
+    int last[256];
+    for (int i = 0; i < 256; i++) last[i] = -1;
+
+    int maxLen = 0, start = 0;
+
+    for (int i = 0; s[i] != '\0'; i++) {
+        unsigned char c = s[i];
+        if (last[c] >= start)
+            start = last[c] + 1;
+        last[c] = i;
+        if (i - start + 1 > maxLen)
+            maxLen = i - start + 1;
+    }
+    return maxLen;
+}

@@ -1,0 +1,8 @@
+Q5. Show a running total of amount for each customer, ordered by date.
+sql
+SELECT customer_id, order_date, amount,
+       SUM(amount) OVER (
+           PARTITION BY customer_id
+           ORDER BY order_date
+       ) AS running_total
+FROM Orders;
